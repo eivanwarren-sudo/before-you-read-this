@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Before You Read This… 😭❤️</title>
+<meta name="description" content="A little website built with courage, questionable decisions, and a suspicious amount of overthinking.">
+<meta name="theme-color" content="#FFF8F1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hearts" aria-hidden="true">
+  <span class="heart" style="left:6%;  font-size:16px; animation-duration:23s; animation-delay:0s;">♥</span>
+  <span class="heart" style="left:18%; font-size:12px; animation-duration:31s; animation-delay:4s;">♥</span>
+  <span class="heart" style="left:29%; font-size:20px; animation-duration:27s; animation-delay:9s;">♥</span>
+  <span class="heart" style="left:41%; font-size:13px; animation-duration:34s; animation-delay:2s;">♥</span>
+  <span class="heart" style="left:55%; font-size:17px; animation-duration:25s; animation-delay:12s;">♥</span>
+  <span class="heart" style="left:66%; font-size:11px; animation-duration:36s; animation-delay:6s;">♥</span>
+  <span class="heart" style="left:76%; font-size:19px; animation-duration:29s; animation-delay:15s;">♥</span>
+  <span class="heart" style="left:87%; font-size:14px; animation-duration:22s; animation-delay:8s;">♥</span>
+  <span class="heart" style="left:94%; font-size:12px; animation-duration:33s; animation-delay:18s;">♥</span>
+  <span class="heart" style="left:48%; font-size:15px; animation-duration:38s; animation-delay:21s;">♥</span>
+</div>
+
+<div class="progress is-hidden" id="progress" aria-hidden="true">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <p class="progress-label" id="progressLabel"></p>
+</div>
+
+<main id="app">
+
+  <!-- ============ OPENING ============ -->
+  <section class="screen active" data-screen="opening" aria-label="Opening">
+    <div class="card card--opening">
+      <span class="eyebrow">a small surprise</span>
+      <h1 class="title">Wait… before you go 😭</h1>
+      <p>I made something for you. And no, it's not homework.</p>
+      <p>Honestly, I could've just said what I wanted to say, but apparently my brain has other plans.</p>
+      <p>So… can you entertain my nonsense for a few minutes?</p>
+
+      <div class="btn-row" id="openingBtns">
+        <button class="btn btn-primary" id="btnStart" type="button">Okay, let's see.</button>
+        <button class="btn btn-outline" id="btnWhy" type="button">Why am I here? 💀</button>
+      </div>
+
+      <div class="note" id="whyBox" hidden>
+        <p class="note-text">Honestly? Valid question. Even I don't know how we got here. HAHAHA.</p>
+        <button class="btn btn-primary" id="btnWhyContinue" type="button">Sige, continue.</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUESTION ============ -->
+  <section class="screen" data-screen="question" aria-label="Question">
+    <div class="card">
+      <span class="q-count" id="qCount"></span>
+      <h2 class="q-text" id="qText" aria-live="polite"></h2>
+      <div class="answers" id="answers"></div>
+
+      <div class="reaction" id="reaction" hidden role="status" aria-live="polite">
+        <span class="reaction-tag">reaction</span>
+        <p class="reaction-text" id="reactionText"></p>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="btnBack" type="button">← Back</button>
+        <button class="btn btn-primary" id="btnNext" type="button" disabled>Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERMISSION ============ -->
+  <section class="screen" data-screen="intermission" aria-label="Intermission">
+    <div class="card card--inter">
+      <span class="eyebrow eyebrow--light">quick intermission</span>
+      <p class="inter-text" id="interText"></p>
+      <div class="nav-row">
+        <button class="btn btn-ghost btn-ghost-light" id="interBack" type="button">← Back</button>
+        <button class="btn btn-light" id="interNext" type="button">Next question</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRE-LETTER ============ -->
+  <section class="screen" data-screen="preletter" aria-label="Before the letter">
+    <div class="card card--soft">
+      <p class="big-line">Okay, jokes aside for a second.</p>
+      <p class="big-line">Not everything has to be a joke, right? HAHAHAHA.</p>
+      <p class="big-line">Anyway, you've made it this far, so I guess you're ready for the main event.</p>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="preBack" type="button">← Back</button>
+        <button class="btn btn-primary" id="preNext" type="button">Okay… read the letter. ❤️</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENVELOPE + LETTER ============ -->
+  <section class="screen" data-screen="envelope" aria-label="The letter">
+    <div class="env-topbar">
+      <button class="btn btn-ghost" id="envBack" type="button">← Back</button>
+    </div>
+
+    <div class="env-wrap" id="envWrap">
+      <p class="env-hint" id="envHint">Tap the envelope 💌</p>
+      <button class="envelope" id="envelope" type="button" aria-label="Open the envelope to read the letter">
+        <span class="env-paper" aria-hidden="true"></span>
+        <span class="env-back" aria-hidden="true"></span>
+        <span class="env-flap" aria-hidden="true"></span>
+        <span class="env-front" aria-hidden="true"></span>
+        <span class="env-seal" aria-hidden="true">♥</span>
+      </button>
+    </div>
+
+    <div class="letter-reveal" id="letterReveal" hidden>
+      <article class="letter" id="letter">
+        <p>Hi HAHAHAHA.</p>
+        <p>So ayun, umabot ka talaga dito. Thank you naman for checking out this website na pinag-effortan ko kahit pwede ko namang sabihin lahat ng 'to normally. Kaso wala eh, minsan ang hirap talaga mag-isip ng sasabihin kapag gusto mong kausapin yung isang tao.</p>
+        <p>To be honest, I made this because there's something I wanted to tell you, pero hindi ko lang talaga alam kung paano sisimulan. Minsan nga simpleng chat lang, ang dami ko nang iniisip kung ano bang magandang sabihin HAHAHAHA.</p>
+        <p>I just want you to know na gusto pa kitang makilala. Gusto kitang makausap, malaman yung mga bagay na gusto mo, marinig yung mga kwento mo, and just have random conversations with you. Kahit simpleng kwentuhan lang, okay na sa akin.</p>
+        <p>Hindi ko naman ine-expect na kailangan mong magustuhan din ako just because I made this. Ayoko rin namang maging awkward tayo sa school after nito HAHAHAHA. I just wanted to be honest with you kaysa naman itago ko lang lahat.</p>
+        <p>And honestly, medyo nakakahiya rin gawin 'to. Imagine, gumawa pa ako ng website imbes na sabihin nang diretso. Ewan ko ba HAHAHAHA.</p>
+        <p>Anyway, thank you for reading this hanggang dulo. Sana kahit papaano napangiti kita, kasi that would already make me happy.</p>
+        <p>Ayun lang naman talaga. I just wanted to tell you how I feel, and if you're comfortable with it, I'd be happy to get to know you more.</p>
+        <p>Ingat ka palagi, and thank you ulit for your time. HAHAHAHA.</p>
+      </article>
+
+      <div class="nav-row nav-row--center">
+        <button class="btn btn-primary" id="toEnding" type="button">Okay, tapos na. 👀</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENDING ============ -->
+  <section class="screen" data-screen="ending" aria-label="Ending">
+    <div class="card card--ending">
+      <div id="endingMain">
+        <span class="eyebrow">fin</span>
+        <h2 class="title title--end">THE END… or maybe the start of a conversation?</h2>
+        <p>Whatever happens, thank you for giving this little website a chance.</p>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btnReplay" type="button">Replay the chaos.</button>
+          <button class="btn btn-outline" id="btnClose" type="button">Close with a smile ❤️</button>
+        </div>
+      </div>
+
+      <div id="closingMsg" hidden>
+        <p class="closing-text">That's all. Take care, and I hope the rest of your day goes well.</p>
+        <div class="btn-row">
+          <button class="btn btn-ghost" id="btnBackEnding" type="button">← Back</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<noscript>
+  <p style="text-align:center;padding:2rem;font-family:sans-serif;">This little website needs JavaScript to work. Please enable it and reload. Thanks!</p>
+</noscript>
+
+<script src="script.js"></script>
+</body>
+</html>
